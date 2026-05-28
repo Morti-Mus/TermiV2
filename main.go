@@ -4,10 +4,19 @@ import "fmt"
 
 func main() {
 
-	test()
-	fmt.Println("Hello world")
 }
 
-func test() {
-	fmt.Println("YO")
+func Tester() string {
+	var inpTest string
+	_, err := fmt.Scanln(&inpTest)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return inpTest
+}
+
+func GameLoop() {
+	inp := Tester()
+
 }
