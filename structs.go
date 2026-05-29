@@ -2,13 +2,14 @@ package main
 
 type Char struct {
 	Stats
-	information
+	Information
 	Storage
 	Location
 }
+
 type Item struct {
 }
-type information struct {
+type Information struct {
 	Name        string
 	Age         int
 	Description string

@@ -1,8 +1,8 @@
 package main
 
-func PlayerChar(Char) {
+func PlayerChar() Char {
 	MainPlayer := Char{
-		information: information{
+		Information: Information{
 			Name:        "John Doe",
 			Age:         27,
 			Description: "im an old fella",
@@ -18,5 +18,43 @@ func PlayerChar(Char) {
 			BackPack: map[string]int{},
 			Pockets:  map[string]int{},
 		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
 	}
+	return MainPlayer
+}
+
+func NPC() map[string]Char {
+	NpcList := make(map[string]Char)
+
+	TestNPC := Char{
+		Information: Information{
+			Name:        "jimme the sketch",
+			Age:         50,
+			Description: "He do be an old sketchy fella",
+		},
+		Stats: Stats{
+			Health:       40,
+			Mana:         30,
+			Agility:      6,
+			Strength:     4,
+			Intelligence: 4,
+		},
+		Storage: Storage{
+			BackPack: map[string]int{},
+			Pockets:  map[string]int{},
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+
+	NpcList["testNPC"] = TestNPC
+
+	// fmt.Println(NpcList["testNPC"])
+
+	return NpcList
 }
