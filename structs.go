@@ -5,9 +5,13 @@ type Char struct {
 	Information
 	Storage
 	Location
+	ObjectState
 }
 
 type Item struct {
+	Information
+	Stats
+	Location
 }
 type Information struct {
 	Name        string
@@ -21,6 +25,7 @@ type Stats struct {
 	Agility      int
 	Strength     int
 	Intelligence int
+	BaseDmg      int
 }
 
 type Location struct {
@@ -28,6 +33,11 @@ type Location struct {
 	YAxis int
 }
 type Storage struct {
-	BackPack map[string]int
-	Pockets  map[string]int
+	BackPack  map[string]Item
+	Pockets   map[string]int
+	LootTable map[string]Item
+}
+
+type ObjectState struct {
+	Death map[int]int
 }

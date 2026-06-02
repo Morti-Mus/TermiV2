@@ -15,7 +15,7 @@ func PlayerChar() Char {
 			Intelligence: 6,
 		},
 		Storage: Storage{
-			BackPack: map[string]int{},
+			BackPack: map[string]Item{},
 			Pockets:  map[string]int{},
 		},
 		Location: Location{
@@ -43,7 +43,7 @@ func NPC() map[string]Char {
 			Intelligence: 4,
 		},
 		Storage: Storage{
-			BackPack: map[string]int{},
+			BackPack: map[string]Item{},
 			Pockets:  map[string]int{},
 		},
 		Location: Location{
@@ -52,9 +52,64 @@ func NPC() map[string]Char {
 		},
 	}
 
-	NpcList["testNPC"] = TestNPC
+	TargetDummy := Char{
+		Information: Information{
+			Name:        "Dummy",
+			Age:         100,
+			Description: "A target dummy made for testing",
+		},
+		Stats: Stats{
+			Health:       100,
+			Mana:         100,
+			Agility:      10,
+			Strength:     10,
+			Intelligence: 10,
+		},
+		Storage: Storage{
+			BackPack:  map[string]Item{},
+			Pockets:   map[string]int{},
+			LootTable: map[string]Item{},
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+		ObjectState: ObjectState{
+			Death: map[int]int{},
+		},
+	}
 
+	NpcList["testNPC"] = TestNPC
+	NpcList["TargetDummy"] = TargetDummy
 	// fmt.Println(NpcList["testNPC"])
 
 	return NpcList
+}
+
+func Items() map[string]Item {
+	ItemList := make(map[string]Item)
+
+	TestSword := Item{
+		Information: Information{
+			Name:        "Test",
+			Age:         100,
+			Description: "Something",
+		},
+		Stats: Stats{
+			Health:       10,
+			Mana:         10,
+			Agility:      10,
+			Strength:     10,
+			Intelligence: 10,
+			BaseDmg:      10,
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+
+	ItemList["TestSword"] = TestSword
+
+	return ItemList
 }

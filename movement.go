@@ -40,7 +40,7 @@ func MoveLoop() {
 	p := &mainChar // p is the pointer for mainChars address in memory.
 
 	sum := 0
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		inp := Tester()
 
 		if inp == "w" {
@@ -58,11 +58,35 @@ func MoveLoop() {
 		if inp == "scan" {
 			p.Scan() // will break this out to its own loop but have to figure things out
 		}
-
-		// fmt.Println(mainChar.Location.XAxis)
-		// fmt.Println(mainChar.Location.YAxis)
+		if inp == "pickup" {
+			p.Pickup()
+		}
+		if inp == "fight" {
+			p.EnterFightModeLoop()
+		}
+		fmt.Println("\n")
+		fmt.Println(mainChar.Location.XAxis)
+		fmt.Println(mainChar.Location.YAxis)
 		// fmt.Println(*p) // i think i should print the p if i want to se the changes
 		// fmt.Println(p)
+		sum += i
+	}
+}
+
+func CombatLoop() {
+	MainChar := PlayerChar()
+	// NpcList := NPC()
+	// n := &NpcList
+	p := &MainChar
+
+	sum := 0
+	for i := 0; i < 100; i++ {
+		inp := Tester()
+
+		if inp == "Attack" {
+			p.Attack()
+			//  - NpcList["testNPC"].Stats.Health
+		}
 
 		sum += i
 	}
