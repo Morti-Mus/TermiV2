@@ -35,9 +35,9 @@ func Tester() string {
 }
 
 // https://medium.com/@danielabatibabatunde1/pointers-in-golang-240b30c6940d for learning pointers
-func MoveLoop() {
-	mainChar := PlayerChar()
-	p := &mainChar // p is the pointer for mainChars address in memory.
+func MoveLoop(p *Char, npcList map[string]Char) {
+
+	// p := &mainChar // p is the pointer for mainChars address in memory.
 
 	sum := 0
 	for i := 0; i < 100; i++ {
@@ -62,30 +62,42 @@ func MoveLoop() {
 			p.Pickup()
 		}
 		if inp == "fight" {
-			p.EnterFightModeLoop()
+			fmt.Println("you have enterd fight mode")
+			CombatLoop(p, npcList)
 		}
 		fmt.Println("\n")
-		fmt.Println(mainChar.Location.XAxis)
-		fmt.Println(mainChar.Location.YAxis)
+		fmt.Println(p.Location.XAxis)
+		fmt.Println(p.Location.YAxis)
 		// fmt.Println(*p) // i think i should print the p if i want to se the changes
 		// fmt.Println(p)
 		sum += i
 	}
 }
 
-func CombatLoop() {
-	MainChar := PlayerChar()
-	// NpcList := NPC()
+func CombatLoop(p *Char, npcList map[string]Char) {
+	// MainChar := PlayerChar()
+	NpcList := NPC()
 	// n := &NpcList
-	p := &MainChar
+	// p := &MainChar
 
 	sum := 0
 	for i := 0; i < 100; i++ {
 		inp := Tester()
 
-		if inp == "Attack" {
+		if inp == "Attack" && p.Location.XAxis == NpcList["testNPC"].Location.XAxis && p.Location.YAxis == NpcList["testNPC"].Location.YAxis {
 			p.Attack()
-			//  - NpcList["testNPC"].Stats.Health
+		}
+		if inp == "test" {
+			test := FindCharsAtLocation(NpcList, p.Location)
+
+			for _, targetName := range test {
+				fmt.Println("Attacking:", targetName)
+				p.Attack()
+			}
+		}
+
+		if inp == "stop" {
+			return
 		}
 
 		sum += i

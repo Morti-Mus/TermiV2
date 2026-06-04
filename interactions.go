@@ -25,12 +25,12 @@ func (c Char) Pickup() {
 	fmt.Println(c.Storage.BackPack["TestSword"])
 }
 
-func (c Char) EnterFightModeLoop() {
-	NpcList := NPC()
-	if c.Location.XAxis == NpcList["testNPC"].Location.XAxis && c.Location.YAxis == NpcList["testNPC"].Location.YAxis {
-		CombatLoop()
-	}
-}
+// func (c Char) EnterFightModeLoop() {
+// 	NpcList := NPC()
+// 	if c.Location.XAxis == NpcList["testNPC"].Location.XAxis && c.Location.YAxis == NpcList["testNPC"].Location.YAxis {
+// 		CombatLoop()
+// 	}
+// }
 
 func (c Char) Attack() Char {
 	NpcList := NPC() //  to auto pick the npc that you are closest to dont know how tho
@@ -45,5 +45,23 @@ func (c Char) Attack() Char {
 		return npc
 
 	}
-	return baseDmgCalc
+	npc := NpcList["testNPC"]
+	npc.Stats.Health -= baseDmgCalc
+	NpcList["testNPC"] = npc
+	return npc
+}
+
+func SamePosition(a Location, b Location) bool {
+	return a.XAxis == b.XAxis && a.YAxis == b.YAxis
+}
+
+func FindCharsAtLocation(chars map[string]Char, target Location) []string { // need to look att this more still feels like magic
+	matches := []string{}
+
+	for name, char := range chars {
+		if SamePosition(char.Location, target) {
+			matches = append(matches, name)
+		}
+	}
+	return matches
 }

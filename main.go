@@ -7,6 +7,11 @@ func main() {
 }
 
 func GameLoops() {
-	MoveLoop()
-	// add scan funcs here but then how to get back
+	// MoveLoop()
+
+	mainChar := PlayerChar()
+	p := &mainChar
+	npcList := NPC()
+
+	MoveLoop(p, npcList) // <--- iwant to move them here to have them in a higher scope so they dont get re called.
 }
