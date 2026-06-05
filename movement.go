@@ -37,6 +37,11 @@ func Tester() string {
 // https://medium.com/@danielabatibabatunde1/pointers-in-golang-240b30c6940d for learning pointers
 func MoveLoop(p *Char, npcList map[string]Char) {
 
+	a := GameDialog()
+
+	fmt.Printf(a["intro"])
+
+	fmt.Printf(a["movment"])
 	// p := &mainChar // p is the pointer for mainChars address in memory.
 
 	sum := 0
@@ -56,7 +61,7 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 			p.Move(0, -1)
 		}
 		if inp == "scan" {
-			p.Scan() // will break this out to its own loop but have to figure things out
+			p.Scan()
 		}
 		if inp == "pickup" {
 			p.Pickup()
@@ -66,8 +71,8 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 			CombatLoop(p, npcList)
 		}
 		fmt.Println("\n")
-		fmt.Println(p.Location.XAxis)
-		fmt.Println(p.Location.YAxis)
+		fmt.Println(p.Location.XAxis, "XAxis")
+		fmt.Println(p.Location.YAxis, "YAxis")
 		// fmt.Println(*p) // i think i should print the p if i want to se the changes
 		// fmt.Println(p)
 		sum += i
@@ -90,9 +95,9 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 		if inp == "test" {
 			test := FindCharsAtLocation(NpcList, p.Location)
 
-			for _, targetName := range test {
+			for _, targetName := range test { // range gives index and value so keep _, other wise out put will be 0,1
 				fmt.Println("Attacking:", targetName)
-				p.Attack()
+				p.AttackV2(npcList)
 			}
 		}
 

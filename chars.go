@@ -47,8 +47,8 @@ func NPC() map[string]Char {
 			Pockets:  map[string]int{},
 		},
 		Location: Location{
-			XAxis: 0,
-			YAxis: 0,
+			XAxis: 5,
+			YAxis: 5,
 		},
 	}
 

@@ -26,6 +26,7 @@ type Stats struct {
 	Strength     int
 	Intelligence int
 	BaseDmg      int
+	BaseDefence  int
 }
 
 type Location struct {
