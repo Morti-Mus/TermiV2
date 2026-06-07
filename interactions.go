@@ -25,6 +25,10 @@ func (c Char) Pickup() {
 	fmt.Println(c.Storage.BackPack["TestSword"])
 }
 
+func (c Char) PickupV2() {
+
+}
+
 func (c Char) Attack() Char {
 	NpcList := NPC() //  to auto pick the npc that you are closest to dont know how tho
 	var baseDmgCalc int = c.Stats.Strength + c.BaseDmg
@@ -44,7 +48,19 @@ func (c Char) Attack() Char {
 	return npc
 }
 
+// func (c Char) Defende(NpcList map[string]Char) Char {
+// 	targets := FindCharsAtLocation(NpcList, c.Location)
+
+// 	if len(targets) == 0 {
+// 		fmt.Println("")
+// 	}
+
+// 	var baseDefenceCalc int = c.Stats.Strength + c.BaseDefence
+
+// }
+
 func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so it dosent create new copy and works on the closest npc
+
 	targets := FindCharsAtLocation(NpcList, c.Location)
 
 	if len(targets) == 0 {
@@ -78,7 +94,50 @@ func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so
 	fmt.Println("you hit him for", baseDmgCalc)
 	fmt.Println(NpcList[targetName].Stats.Health, "enemy health remaining")
 
+	if NpcList[targetName].Health == 0 {
+		c.NpcDeath(NpcList)
+	}
+
 	return npc
+}
+
+func (c *Char) npcAttack(NpcList map[string]Char) { //its wierd that this dosent need return
+	attacker := FindCharsAtLocation(NpcList, c.Location)
+
+	if len(attacker) == 0 {
+		fmt.Println("No available attacker")
+	}
+
+	attackerName := attacker[0]
+
+	var baseDmgCalc int = NpcList[attackerName].BaseDmg + NpcList[attackerName].Strength
+
+	c.Stats.Health = c.Stats.Health - baseDmgCalc
+}
+
+func (c Char) NpcDeath(NpcList map[string]Char) {
+	attacker := FindCharsAtLocation(NpcList, c.Location)
+
+	if len(attacker) == 0 {
+		fmt.Println("No available attacker")
+	}
+
+	attackerName := attacker[0]
+
+	NpcList[attackerName].ObjectState.Death[""] = NpcList[attackerName]
+
+	delete(NpcList, attackerName)
+}
+
+func (c Char) ItemDrop(NpcList map[string]Char) map[string]Item {
+	itemList := Items()
+	npcTargetList := FindCharsAtLocation(NpcList, c.Location)
+	npcCurrentTarget := npcTargetList[0]
+
+	loot := NpcList[npcCurrentTarget].Storage.LootTable
+	loot["WoodenMallet"] = itemList["WoodenMallet"]
+
+	return loot
 }
 
 func SamePosition(a Location, b Location) bool {
@@ -96,11 +155,6 @@ func FindCharsAtLocation(chars map[string]Char, target Location) []string { // n
 	return matches
 }
 
-// func (c Char) Defende() {
-// 	var baseDefenceCalc int = c.Stats.Strength + c.BaseDefence
-
-// }
-
 func GameDialog() map[string]string {
 	a := make(map[string]string)
 
@@ -108,5 +162,6 @@ func GameDialog() map[string]string {
 	a["movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south"
 	a["attack"] = "stuff"
 	a["scan"] = "you see a person in the distance \n"
+
 	return a
 }

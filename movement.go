@@ -81,7 +81,7 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 
 func CombatLoop(p *Char, npcList map[string]Char) {
 	// MainChar := PlayerChar()
-	NpcList := NPC()
+	// NpcList := NPC()
 	// n := &NpcList
 	// p := &MainChar
 
@@ -89,15 +89,18 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 	for i := 0; i < 100; i++ {
 		inp := Tester()
 
-		if inp == "Attack" && p.Location.XAxis == NpcList["testNPC"].Location.XAxis && p.Location.YAxis == NpcList["testNPC"].Location.YAxis {
+		if inp == "Attack" && p.Location.XAxis == npcList["testNPC"].Location.XAxis && p.Location.YAxis == npcList["testNPC"].Location.YAxis {
 			p.Attack()
 		}
 		if inp == "test" {
-			test := FindCharsAtLocation(NpcList, p.Location)
+			test := FindCharsAtLocation(npcList, p.Location)
 
 			for _, targetName := range test { // range gives index and value so keep _, other wise out put will be 0,1
 				fmt.Println("Attacking:", targetName)
 				p.AttackV2(npcList)
+				p.npcAttack(npcList)
+				fmt.Println("After attacking the enemy he strikes you back \n")
+				fmt.Println(p.Stats.Health)
 			}
 		}
 

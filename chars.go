@@ -75,7 +75,7 @@ func NPC() map[string]Char {
 			YAxis: 0,
 		},
 		ObjectState: ObjectState{
-			Death: map[int]int{},
+			Death: map[string]Char{},
 		},
 	}
 
@@ -108,8 +108,28 @@ func Items() map[string]Item {
 			YAxis: 0,
 		},
 	}
+	woodenMallet := Item{
+		Information: Information{
+			Name:        "Test",
+			Age:         100,
+			Description: "Something",
+		},
+		Stats: Stats{
+			Health:       10,
+			Mana:         10,
+			Agility:      10,
+			Strength:     10,
+			Intelligence: 10,
+			BaseDmg:      10,
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
 
 	ItemList["TestSword"] = TestSword
+	ItemList["WoodenMallet"] = woodenMallet
 
 	return ItemList
 }

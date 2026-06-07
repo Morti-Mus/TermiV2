@@ -40,5 +40,5 @@ type Storage struct {
 }
 
 type ObjectState struct {
-	Death map[int]int
+	Death map[string]Char
 }
