@@ -25,8 +25,21 @@ func (c Char) Pickup() {
 	fmt.Println(c.Storage.BackPack["TestSword"])
 }
 
-func (c Char) PickupV2() {
+func (c *Char) PickupV2(NpcList map[string]Char) {
+	targets := FindCharsAtLocation(NpcList, c.Location)
 
+	if len(targets) == 0 {
+		fmt.Println("No availabe targets try scan")
+	}
+
+	targetName := targets[0]
+	loot := make(map[string]Item)
+
+	loot["WoodenMallet"] = NpcList[targetName].Storage.LootTable["WoodenMallet"]
+
+	if NpcList[targetName].Stats.Health <= 0 {
+		c.Storage.BackPack["WoodenMallet"] = loot["WoodenMallet"]
+	}
 }
 
 func (c Char) Attack() Char {
@@ -48,16 +61,10 @@ func (c Char) Attack() Char {
 	return npc
 }
 
-// func (c Char) Defende(NpcList map[string]Char) Char {
-// 	targets := FindCharsAtLocation(NpcList, c.Location)
+func (c *Char) Defende(NpcList map[string]Char) {
 
-// 	if len(targets) == 0 {
-// 		fmt.Println("")
-// 	}
-
-// 	var baseDefenceCalc int = c.Stats.Strength + c.BaseDefence
-
-// }
+	c.BaseDefence = c.Stats.Strength + c.BaseDefence
+}
 
 func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so it dosent create new copy and works on the closest npc
 

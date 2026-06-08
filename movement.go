@@ -103,6 +103,15 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 				fmt.Println(p.Stats.Health)
 			}
 		}
+		if inp == "stuff" {
+			p.PickupV2(npcList)
+		}
+
+		if inp == "defende" {
+			fmt.Println(p.Stats.BaseDefence)
+			p.Defende(npcList)
+			fmt.Println(p.Stats.BaseDefence)
+		}
 
 		if inp == "stop" {
 			return
