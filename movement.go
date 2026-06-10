@@ -7,23 +7,6 @@ import (
 	"strings"
 )
 
-// func Tester() string {
-// 	var inpTest string
-// 	_, err := fmt.Scanln(&inpTest)
-// 	if err != nil {
-// 		fmt.Println(err)
-// 	}
-
-// 	return inpTest
-// }
-
-//	func (c Char) UseItem(itemName string, target Char) {
-//		selectedItem, has := c.BackPack[itemName]
-//		if !has {
-//			return
-//		}
-//		selectedItem.UseItemOn(target)
-//	}
 func Tester() string {
 	reader := bufio.NewReader(os.Stdin)
 	inp, err := reader.ReadString('\n')
@@ -42,6 +25,7 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 	fmt.Printf(a["intro"])
 
 	fmt.Printf(a["movment"])
+	fmt.Printf("Your Input: ")
 	// p := &mainChar // p is the pointer for mainChars address in memory.
 
 	sum := 0
@@ -61,10 +45,13 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 			p.Move(0, -1)
 		}
 		if inp == "scan" {
-			p.Scan()
+			p.Scan(npcList)
+		}
+		if inp == "scan2" {
+			p.ScanV2(npcList)
 		}
 		if inp == "pickup" {
-			p.Pickup()
+			// p.Pickup()
 		}
 		if inp == "fight" {
 			fmt.Println("you have enterd fight mode")
@@ -73,25 +60,19 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 		fmt.Println("\n")
 		fmt.Println(p.Location.XAxis, "XAxis")
 		fmt.Println(p.Location.YAxis, "YAxis")
-		// fmt.Println(*p) // i think i should print the p if i want to se the changes
-		// fmt.Println(p)
+		fmt.Printf("Your Input: ")
+
 		sum += i
 	}
 }
 
 func CombatLoop(p *Char, npcList map[string]Char) {
-	// MainChar := PlayerChar()
-	// NpcList := NPC()
-	// n := &NpcList
-	// p := &MainChar
-
+	a := GameDialog()
 	sum := 0
+	fmt.Printf(a["combat"])
 	for i := 0; i < 100; i++ {
 		inp := Tester()
 
-		if inp == "Attack" && p.Location.XAxis == npcList["testNPC"].Location.XAxis && p.Location.YAxis == npcList["testNPC"].Location.YAxis {
-			p.Attack()
-		}
 		if inp == "test" {
 			test := FindCharsAtLocation(npcList, p.Location)
 
@@ -103,8 +84,9 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 				fmt.Println(p.Stats.Health)
 			}
 		}
-		if inp == "stuff" {
+		if inp == "pickup" {
 			p.PickupV2(npcList)
+			fmt.Println(p.Storage.BackPack["WoddenMallet"])
 		}
 
 		if inp == "defende" {
@@ -113,10 +95,13 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 			fmt.Println(p.Stats.BaseDefence)
 		}
 
+		if inp == "inspect" {
+			p.inspect(npcList)
+		}
 		if inp == "stop" {
 			return
 		}
-
+		fmt.Printf("Your Input: ")
 		sum += i
 	}
 }

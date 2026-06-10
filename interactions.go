@@ -5,24 +5,25 @@ import (
 	"math/rand/v2"
 )
 
-func (c Char) Scan() {
-	NpcList := NPC()
-	dialog := GameDialog()
+func (c Char) Scan(NpcList map[string]Char) {
+	// dialog := GameDialog()
 
-	fmt.Println(NpcList["testNPC"].Location.XAxis, dialog["scan"])
-	fmt.Println(NpcList["testNPC"].Location.YAxis, dialog["scan"])
+	for i, Npc := range NpcList {
+
+		fmt.Printf("Npclist[%v] x=%v y=%v \n",
+			i,
+			Npc.Location.XAxis,
+			Npc.Location.YAxis,
+		)
+	}
 }
 
-func (c Char) Pickup() {
-	ItemList := Items()
+func (c Char) ScanV2(NpcList map[string]Char) {
+	targets := FindCharsAtLocation(NpcList, c.Location)
 
-	if c.Location.XAxis == ItemList["TestSword"].Location.XAxis && c.Location.YAxis == ItemList["TestSword"].Location.YAxis {
-		c.Storage.BackPack["TestSword"] = ItemList["TestSword"]
-		fmt.Println(ItemList, "List befor deletion")
-		delete(ItemList, "TestSword")
-		fmt.Println(ItemList, "List after deletion")
-	}
-	fmt.Println(c.Storage.BackPack["TestSword"])
+	// targetName := targets
+	fmt.Println(targets)
+
 }
 
 func (c *Char) PickupV2(NpcList map[string]Char) {
@@ -42,28 +43,25 @@ func (c *Char) PickupV2(NpcList map[string]Char) {
 	}
 }
 
-func (c Char) Attack() Char {
-	NpcList := NPC() //  to auto pick the npc that you are closest to dont know how tho
-	var baseDmgCalc int = c.Stats.Strength + c.BaseDmg
-	if CritChanse := rand.IntN(100 - c.Stats.Agility); CritChanse == 0 {
-		damage := baseDmgCalc * 2
-
-		npc := NpcList["testNPC"]
-		npc.Stats.Health -= damage
-		NpcList["testNPC"] = npc
-
-		return npc
-
-	}
-	npc := NpcList["testNPC"]
-	npc.Stats.Health -= baseDmgCalc
-	NpcList["testNPC"] = npc
-	return npc
-}
-
 func (c *Char) Defende(NpcList map[string]Char) {
 
 	c.BaseDefence = c.Stats.Strength + c.BaseDefence
+}
+
+func (c Char) inspect(NpcList map[string]Char) {
+	targets := FindCharsAtLocation(NpcList, c.Location)
+
+	if len(targets) == 0 {
+		fmt.Println("No available targets try scan")
+		return
+	}
+	targetName := targets[0]
+	fmt.Println("you have encounterd: ", NpcList[targetName].Name, "\n")
+	fmt.Println("after a closer inspection you se: ", NpcList[targetName].Description)
+	fmt.Println("----------------------")
+
+	fmt.Println("his health is", NpcList[targetName].Health)
+	fmt.Println(NpcList[targetName].Stats.Mana)
 }
 
 func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so it dosent create new copy and works on the closest npc
@@ -72,13 +70,10 @@ func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so
 
 	if len(targets) == 0 {
 		fmt.Println("No availabe targets try scan")
+		return c
 	}
 
 	targetName := targets[0]
-	fmt.Println("you have encounterd: ", NpcList[targetName].Name, "\n")
-	fmt.Println("after a closer inspection you se: ", NpcList[targetName].Description)
-	fmt.Println("----------------------")
-	fmt.Println("his health is", NpcList[targetName].Health)
 
 	var baseDmgCalc int = c.Stats.Strength + c.BaseDmg
 	if CritChanse := rand.IntN(100 - c.Stats.Agility); CritChanse == 0 {
@@ -101,9 +96,9 @@ func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so
 	fmt.Println("you hit him for", baseDmgCalc)
 	fmt.Println(NpcList[targetName].Stats.Health, "enemy health remaining")
 
-	if NpcList[targetName].Health == 0 {
-		c.NpcDeath(NpcList)
-	}
+	// if NpcList[targetName].Health == 0 {
+	// 	c.NpcDeath(NpcList)
+	// }
 
 	return npc
 }
@@ -113,6 +108,7 @@ func (c *Char) npcAttack(NpcList map[string]Char) { //its wierd that this dosent
 
 	if len(attacker) == 0 {
 		fmt.Println("No available attacker")
+		return
 	}
 
 	attackerName := attacker[0]
@@ -127,6 +123,7 @@ func (c Char) NpcDeath(NpcList map[string]Char) {
 
 	if len(attacker) == 0 {
 		fmt.Println("No available attacker")
+		return
 	}
 
 	attackerName := attacker[0]
@@ -166,9 +163,10 @@ func GameDialog() map[string]string {
 	a := make(map[string]string)
 
 	a["intro"] = "Hello welcome to the game you will soon get instructions on how it works \n"
-	a["movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south"
+	a["movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south \n"
 	a["attack"] = "stuff"
 	a["scan"] = "you see a person in the distance \n"
+	a["combat"] = "These are the options you have in combat. \n (attack) to attack your enemy \n (inspect) to inspect you enemy \n (defende) to defende from your enemy \n (stop) to return to movment.\n"
 
 	return a
 }

@@ -5,7 +5,7 @@ func PlayerChar() Char {
 		Information: Information{
 			Name:        "John Doe",
 			Age:         27,
-			Description: "im an old fella",
+			Description: "im an old fella", // add base damage
 		},
 		Stats: Stats{
 			Health:       100,
@@ -49,6 +49,9 @@ func NPC() map[string]Char {
 		Location: Location{
 			XAxis: 5,
 			YAxis: 5,
+		},
+		ObjectState: ObjectState{
+			Death: map[string]Char{},
 		},
 	}
 
