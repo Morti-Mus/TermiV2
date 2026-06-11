@@ -26,6 +26,21 @@ func (c Char) ScanV2(NpcList map[string]Char) {
 
 }
 
+func (c *Char) EquipeItem(NpcList map[string]Char) { // https://leapcell.io/blog/checking-if-a-key-exists-in-a-go-map
+	test := c.Storage.BackPack
+
+	// stuff := []string{}
+
+	for key, value := range test {
+		fmt.Println("WeaponName: ", key)
+
+		c.Stats.Strength += value.Stats.Strength
+
+		break
+	}
+
+}
+
 func (c *Char) PickupV2(NpcList map[string]Char) {
 	targets := FindCharsAtLocation(NpcList, c.Location)
 
@@ -43,9 +58,17 @@ func (c *Char) PickupV2(NpcList map[string]Char) {
 	}
 }
 
+func (c *Char) testPickupItem(NpcList map[string]Char) {
+	itemList := Items()
+
+	c.Storage.BackPack["testHammer"] = itemList["testHammer"]
+	fmt.Println(c.Storage.BackPack["testHammer"])
+}
+
 func (c *Char) Defende(NpcList map[string]Char) {
 
 	c.BaseDefence = c.Stats.Strength + c.BaseDefence
+	c.BaseDefence += c.Stats.Strength
 }
 
 func (c Char) inspect(NpcList map[string]Char) {

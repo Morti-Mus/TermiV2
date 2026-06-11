@@ -130,9 +130,29 @@ func Items() map[string]Item {
 			YAxis: 0,
 		},
 	}
+	testHammer := Item{
+		Information: Information{
+			Name:        "testHammer",
+			Age:         100,
+			Description: "A hammer made for testing",
+		},
+		Stats: Stats{
+			Health:       10,
+			Mana:         10,
+			Agility:      10,
+			Strength:     10,
+			Intelligence: 10,
+			BaseDmg:      10,
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
 
 	ItemList["TestSword"] = TestSword
 	ItemList["WoodenMallet"] = woodenMallet
+	ItemList["testHammer"] = testHammer
 
 	return ItemList
 }

@@ -73,7 +73,7 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 	for i := 0; i < 100; i++ {
 		inp := Tester()
 
-		if inp == "test" {
+		if inp == "attack" {
 			test := FindCharsAtLocation(npcList, p.Location)
 
 			for _, targetName := range test { // range gives index and value so keep _, other wise out put will be 0,1
@@ -100,6 +100,13 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 		}
 		if inp == "stop" {
 			return
+		}
+		if inp == "test" {
+			p.testPickupItem(npcList)
+		}
+		if inp == "test2" {
+			p.EquipeItem(npcList)
+			fmt.Println("test")
 		}
 		fmt.Printf("Your Input: ")
 		sum += i
