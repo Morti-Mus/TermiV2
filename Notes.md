@@ -39,3 +39,10 @@ Then use pointers to manipulet them in the loops so they will never be re called
 2. Call order goes main() whats inside main and so on. So from the top down and not bottom upp. 
 this is a bitt of a important concept i think 
 3. I need to understand what and why im using it. For example in this code i have focused on maps beacuse i found the key and assignmet functionality neat for my structs. But damn its screwd me over when i need to sort or auto pick things from the maps wich you cant. Beacuse you set your own structure.
+
+
+
+
+Game rules for coding 
+defence will be remove /2 of t self from the damage 
+crit will 2x the damage 

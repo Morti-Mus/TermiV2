@@ -66,9 +66,10 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 	}
 }
 
-func CombatLoop(p *Char, npcList map[string]Char) {
+func CombatLoop(c *Char, npcList map[string]Char) {
 	a := GameDialog()
-
+	c.Stats.Defence = c.Stats.BaseDefence
+	// fmt.Println(c.Stats.Defence)
 	fmt.Printf(a["combat"])
 
 	for {
@@ -77,37 +78,37 @@ func CombatLoop(p *Char, npcList map[string]Char) {
 		switch inp {
 
 		case "attack":
-			test := FindCharsAtLocation(npcList, p.Location)
+			test := FindCharsAtLocation(npcList, c.Location)
 
 			for _, targetName := range test { // range gives index and value so keep _, other wise out put will be 0,1
 				fmt.Println("Attacking:", targetName, "\n")
-				p.AttackV2(npcList)
-				p.npcAttack(npcList)
+				c.AttackV2(npcList)
+				c.NpcAttack(npcList)
 				fmt.Println("After attacking the enemy he strikes you back")
-				fmt.Println("You take: ", p.npcAttack(npcList), "Dmg")
-				fmt.Println("Remaining Health", p.Stats.Health)
+				fmt.Println("You take: ", c.NpcAttack(npcList), "Dmg")
+				fmt.Println("Remaining Health", c.Stats.Health)
 			}
 
 		case "pickup":
-			p.PickupV2(npcList)
-			fmt.Println(p.Storage.BackPack["WoddenMallet"])
+			c.PickupV2(npcList)
+			fmt.Println(c.Storage.BackPack["WoddenMallet"])
 
 		case "defende":
-			fmt.Println(p.Stats.BaseDefence)
-			p.Defende(npcList)
-			fmt.Println(p.Stats.BaseDefence)
+			// fmt.Println(p.Stats.BaseDefence)
+			c.Defende(npcList)
+			fmt.Println(c.Stats.Defence)
 
 		case "inspect":
-			p.inspect(npcList)
+			c.Inspect(npcList)
 
 		case "stop":
 			return
 
 		case "test":
-			p.testPickupItem(npcList)
+			c.TestPickupItem(npcList)
 
 		case "test2":
-			p.EquipeItem(npcList)
+			c.EquipeItem(npcList)
 			fmt.Println("test")
 
 		}

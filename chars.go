@@ -13,6 +13,8 @@ func PlayerChar() Char {
 			Agility:      4,
 			Strength:     8,
 			Intelligence: 6,
+			BaseDefence:  2,
+			Defence:      0,
 		},
 		Storage: Storage{
 			BackPack: map[string]Item{},

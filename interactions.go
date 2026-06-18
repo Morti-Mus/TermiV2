@@ -58,7 +58,7 @@ func (c *Char) PickupV2(NpcList map[string]Char) {
 	}
 }
 
-func (c *Char) testPickupItem(NpcList map[string]Char) {
+func (c *Char) TestPickupItem(NpcList map[string]Char) {
 	itemList := Items()
 
 	c.Storage.BackPack["testHammer"] = itemList["testHammer"]
@@ -67,11 +67,12 @@ func (c *Char) testPickupItem(NpcList map[string]Char) {
 
 func (c *Char) Defende(NpcList map[string]Char) {
 
-	c.BaseDefence = c.Stats.Strength + c.BaseDefence
-	c.BaseDefence += c.Stats.Strength
+	// c.Stats.BaseDefence = c.Stats.Strength + c.Stats.BaseDefence
+	c.Stats.Defence = c.BaseDefence + c.Stats.Strength
+
 }
 
-func (c Char) inspect(NpcList map[string]Char) {
+func (c Char) Inspect(NpcList map[string]Char) {
 	targets := FindCharsAtLocation(NpcList, c.Location)
 
 	if len(targets) == 0 {
@@ -126,7 +127,7 @@ func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so
 	return npc
 }
 
-func (c *Char) npcAttack(NpcList map[string]Char) int { //its wierd that this dosent need return
+func (c *Char) NpcAttack(NpcList map[string]Char) int { //its wierd that this dosent need return
 	attacker := FindCharsAtLocation(NpcList, c.Location)
 
 	if len(attacker) == 0 {
@@ -136,7 +137,7 @@ func (c *Char) npcAttack(NpcList map[string]Char) int { //its wierd that this do
 	attackerName := attacker[0]
 
 	var baseDmgCalc int = NpcList[attackerName].BaseDmg + NpcList[attackerName].Strength
-
+	baseDmgCalc -= c.Stats.Defence / 2
 	c.Stats.Health = c.Stats.Health - baseDmgCalc
 	return baseDmgCalc
 }
