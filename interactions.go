@@ -126,12 +126,11 @@ func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so
 	return npc
 }
 
-func (c *Char) npcAttack(NpcList map[string]Char) { //its wierd that this dosent need return
+func (c *Char) npcAttack(NpcList map[string]Char) int { //its wierd that this dosent need return
 	attacker := FindCharsAtLocation(NpcList, c.Location)
 
 	if len(attacker) == 0 {
 		fmt.Println("No available attacker")
-		return
 	}
 
 	attackerName := attacker[0]
@@ -139,6 +138,7 @@ func (c *Char) npcAttack(NpcList map[string]Char) { //its wierd that this dosent
 	var baseDmgCalc int = NpcList[attackerName].BaseDmg + NpcList[attackerName].Strength
 
 	c.Stats.Health = c.Stats.Health - baseDmgCalc
+	return baseDmgCalc
 }
 
 func (c Char) NpcDeath(NpcList map[string]Char) {
@@ -180,6 +180,15 @@ func FindCharsAtLocation(chars map[string]Char, target Location) []string { // n
 		}
 	}
 	return matches
+}
+
+func (c *Char) Move(deltaX, deltaY int) {
+	// if c.Agility < 5 {
+	// 	deltaX = min(deltaX, +1)
+	// 	deltaY = min(deltaY, +1)
+	// }
+	c.Location.XAxis += deltaX
+	c.Location.YAxis += deltaY
 }
 
 func GameDialog() map[string]string {
