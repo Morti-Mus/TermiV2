@@ -108,8 +108,9 @@ func CombatLoop(c *Char, npcList map[string]Char) {
 			c.TestPickupItem(npcList)
 
 		case "test2":
+			fmt.Println(c.Stats.Strength)
 			c.EquipeItem(npcList)
-			fmt.Println("test")
+			fmt.Println(c.Stats.Strength)
 
 		}
 		fmt.Printf("Your Input: ")

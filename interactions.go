@@ -28,6 +28,8 @@ func (c Char) ScanV2(NpcList map[string]Char) {
 
 func (c *Char) EquipeItem(NpcList map[string]Char) { // https://leapcell.io/blog/checking-if-a-key-exists-in-a-go-map
 	test := c.Storage.BackPack
+	// stuff := []string{}
+	// i need to convert the back pack to a slice i think
 
 	// stuff := []string{}
 
@@ -127,6 +129,22 @@ func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so
 	return npc
 }
 
+func (c Char) NpcDefence(NpcList map[string]Char) {
+	attacker := FindCharsAtLocation(NpcList, c.Location)
+
+	if len(attacker) == 0 {
+		fmt.Println("No available attacker")
+	}
+
+	attackerName := attacker[0]
+
+	// NpcList[attackerName].Stats.Defence = NpcList[attackerName].Stats.BaseDefence + NpcList[attackerName].Stats.Strength
+
+	test := NpcList[attackerName]
+	test.Stats.Defence = test.BaseDefence + test.Stats.Strength
+	test.Stats.Defence = NpcList[attackerName].Stats.Defence
+}
+
 func (c *Char) NpcAttack(NpcList map[string]Char) int { //its wierd that this dosent need return
 	attacker := FindCharsAtLocation(NpcList, c.Location)
 
@@ -157,6 +175,10 @@ func (c Char) NpcDeath(NpcList map[string]Char) {
 	delete(NpcList, attackerName)
 }
 
+func NpcChoiceAction(NpcList map[string]Char) {
+	// here we add rand func for different npc acctions attack defende and flee
+}
+
 func (c Char) ItemDrop(NpcList map[string]Char) map[string]Item {
 	itemList := Items()
 	npcTargetList := FindCharsAtLocation(NpcList, c.Location)
@@ -172,7 +194,7 @@ func SamePosition(a Location, b Location) bool {
 	return a.XAxis == b.XAxis && a.YAxis == b.YAxis
 }
 
-func FindCharsAtLocation(chars map[string]Char, target Location) []string { // need to look att this more still feels like magic
+func FindCharsAtLocation(chars map[string]Char, target Location) []string { // Check if  we can use pointers instead of copy logic
 	matches := []string{}
 
 	for name, char := range chars {
