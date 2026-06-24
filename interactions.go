@@ -28,19 +28,12 @@ func (c Char) ScanV2(NpcList map[string]Char) {
 
 func (c *Char) EquipeItem(NpcList map[string]Char) { // https://leapcell.io/blog/checking-if-a-key-exists-in-a-go-map
 	test := c.Storage.BackPack
-	// stuff := []string{}
-	// i need to convert the back pack to a slice i think
-
-	// stuff := []string{}
 
 	for key, value := range test {
 		fmt.Println("WeaponName: ", key)
-
 		c.Stats.Strength += value.Stats.Strength
-
 		break
 	}
-
 }
 
 func (c *Char) PickupV2(NpcList map[string]Char) {
@@ -87,6 +80,8 @@ func (c Char) Inspect(NpcList map[string]Char) {
 	fmt.Println("----------------------")
 
 	fmt.Println("his health is", NpcList[targetName].Health)
+	fmt.Println("his mana is ", NpcList[targetName].Stats.Mana)
+	fmt.Println("his strength is", NpcList[targetName].Stats.Strength)
 	fmt.Println(NpcList[targetName].Stats.Mana)
 }
 
@@ -122,14 +117,10 @@ func (c Char) AttackV2(NpcList map[string]Char) Char { // need to redo attack so
 	fmt.Println("you hit him for", baseDmgCalc)
 	fmt.Println(NpcList[targetName].Stats.Health, "enemy health remaining")
 
-	// if NpcList[targetName].Health == 0 {
-	// 	c.NpcDeath(NpcList)
-	// }
-
 	return npc
 }
 
-func (c Char) NpcDefence(NpcList map[string]Char) {
+func (c Char) NpcDefence(NpcList map[string]Char) int {
 	attacker := FindCharsAtLocation(NpcList, c.Location)
 
 	if len(attacker) == 0 {
@@ -138,11 +129,11 @@ func (c Char) NpcDefence(NpcList map[string]Char) {
 
 	attackerName := attacker[0]
 
-	// NpcList[attackerName].Stats.Defence = NpcList[attackerName].Stats.BaseDefence + NpcList[attackerName].Stats.Strength
-
 	test := NpcList[attackerName]
 	test.Stats.Defence = test.BaseDefence + test.Stats.Strength
 	test.Stats.Defence = NpcList[attackerName].Stats.Defence
+
+	return NpcList[attackerName].Stats.Defence
 }
 
 func (c *Char) NpcAttack(NpcList map[string]Char) int {

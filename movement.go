@@ -101,7 +101,7 @@ func CombatLoop(c *Char, NpcList map[string]Char) {
 			fmt.Println(c.Stats.Defence)
 
 		case "inspect":
-			c.Inspect(NpcList)
+			c.Inspect(NpcList) // check if cases are alla evaluated or not
 
 		case "stop":
 			return
