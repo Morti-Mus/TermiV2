@@ -145,7 +145,7 @@ func (c Char) NpcDefence(NpcList map[string]Char) {
 	test.Stats.Defence = NpcList[attackerName].Stats.Defence
 }
 
-func (c *Char) NpcAttack(NpcList map[string]Char) int { //its wierd that this dosent need return
+func (c *Char) NpcAttack(NpcList map[string]Char) int {
 	attacker := FindCharsAtLocation(NpcList, c.Location)
 
 	if len(attacker) == 0 {
@@ -175,8 +175,28 @@ func (c Char) NpcDeath(NpcList map[string]Char) {
 	delete(NpcList, attackerName)
 }
 
-func NpcChoiceAction(NpcList map[string]Char) {
-	// here we add rand func for different npc acctions attack defende and flee
+func (c *Char) NpcChoiceAction(NpcList map[string]Char) {
+	Defender := FindCharsAtLocation(NpcList, c.Location)
+
+	if len(Defender) == 0 {
+		fmt.Println("No available attacker")
+		return
+	}
+
+	DefenderName := Defender[0]
+
+	RandInt := rand.IntN(100)
+
+	if RandInt < 70 {
+		c.NpcAttack(NpcList)
+		fmt.Println("After attacking the enemy he strikes you back")
+		fmt.Println("You take: ", c.NpcAttack(NpcList), "Dmg")
+		fmt.Println("Remaining Health", c.Stats.Health)
+	} else if RandInt < 100 {
+		c.NpcDefence(NpcList)
+		fmt.Println("The Npc defence rose by", NpcList[DefenderName].Stats.Defence)
+	}
+
 }
 
 func (c Char) ItemDrop(NpcList map[string]Char) map[string]Item {

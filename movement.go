@@ -18,7 +18,7 @@ func Tester() string {
 }
 
 // https://medium.com/@danielabatibabatunde1/pointers-in-golang-240b30c6940d for learning pointers
-func MoveLoop(p *Char, npcList map[string]Char) {
+func MoveLoop(p *Char, NpcList map[string]Char) {
 
 	a := GameDialog()
 
@@ -46,17 +46,17 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 			p.Move(0, -1)
 
 		case "scan":
-			p.Scan(npcList)
+			p.Scan(NpcList)
 
 		case "scan2":
-			p.ScanV2(npcList)
+			p.ScanV2(NpcList)
 
 		case "pickup":
 			// p.Pickup()
 
 		case "fight":
 			fmt.Println("you have enterd fight mode")
-			CombatLoop(p, npcList)
+			CombatLoop(p, NpcList)
 		}
 
 		fmt.Println("\n")
@@ -66,7 +66,7 @@ func MoveLoop(p *Char, npcList map[string]Char) {
 	}
 }
 
-func CombatLoop(c *Char, npcList map[string]Char) {
+func CombatLoop(c *Char, NpcList map[string]Char) {
 	a := GameDialog()
 	c.Stats.Defence = c.Stats.BaseDefence
 	// fmt.Println(c.Stats.Defence)
@@ -78,38 +78,40 @@ func CombatLoop(c *Char, npcList map[string]Char) {
 		switch inp {
 
 		case "attack":
-			test := FindCharsAtLocation(npcList, c.Location)
+			test := FindCharsAtLocation(NpcList, c.Location)
 
 			for _, targetName := range test { // range gives index and value so keep _, other wise out put will be 0,1
 				fmt.Println("Attacking:", targetName, "\n")
-				c.AttackV2(npcList)
-				c.NpcAttack(npcList)
-				fmt.Println("After attacking the enemy he strikes you back")
-				fmt.Println("You take: ", c.NpcAttack(npcList), "Dmg")
-				fmt.Println("Remaining Health", c.Stats.Health)
+				c.AttackV2(NpcList)
+				c.NpcChoiceAction(NpcList)
+				// c.NpcAttack(NpcList)
+				// fmt.Println("After attacking the enemy he strikes you back")
+				// fmt.Println("You take: ", c.NpcAttack(NpcList), "Dmg")
+				// fmt.Println("Remaining Health", c.Stats.Health)
 			}
 
 		case "pickup":
-			c.PickupV2(npcList)
+			c.PickupV2(NpcList)
 			fmt.Println(c.Storage.BackPack["WoddenMallet"])
 
 		case "defende":
 			// fmt.Println(p.Stats.BaseDefence)
-			c.Defende(npcList)
+			c.Defende(NpcList)
+			c.NpcChoiceAction(NpcList)
 			fmt.Println(c.Stats.Defence)
 
 		case "inspect":
-			c.Inspect(npcList)
+			c.Inspect(NpcList)
 
 		case "stop":
 			return
 
 		case "test":
-			c.TestPickupItem(npcList)
+			c.TestPickupItem(NpcList)
 
 		case "test2":
 			fmt.Println(c.Stats.Strength)
-			c.EquipeItem(npcList)
+			c.EquipeItem(NpcList)
 			fmt.Println(c.Stats.Strength)
 
 		}
