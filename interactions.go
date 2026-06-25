@@ -131,8 +131,7 @@ func (c Char) NpcDefence(NpcList map[string]Char) int {
 
 	test := NpcList[attackerName]
 	test.Stats.Defence = test.BaseDefence + test.Stats.Strength
-	test.Stats.Defence = NpcList[attackerName].Stats.Defence
-
+	NpcList[attackerName] = test
 	return NpcList[attackerName].Stats.Defence
 }
 
@@ -178,12 +177,13 @@ func (c *Char) NpcChoiceAction(NpcList map[string]Char) {
 
 	RandInt := rand.IntN(100)
 
-	if RandInt < 70 {
+	if RandInt < 65 {
 		c.NpcAttack(NpcList)
 		fmt.Println("After attacking the enemy he strikes you back")
 		fmt.Println("You take: ", c.NpcAttack(NpcList), "Dmg")
 		fmt.Println("Remaining Health", c.Stats.Health)
 	} else if RandInt < 100 {
+		fmt.Println("Then enemy is boulstering their defence")
 		c.NpcDefence(NpcList)
 		fmt.Println("The Npc defence rose by", NpcList[DefenderName].Stats.Defence)
 	}
