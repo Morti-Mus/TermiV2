@@ -51,8 +51,8 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 		case "scan2":
 			p.ScanV2(NpcList)
 
-		case "pickup":
-			// p.Pickup()
+		case "test":
+			p.TestPickupItemV2(NpcList)
 
 		case "fight":
 			fmt.Println("you have enterd fight mode")

@@ -6,6 +6,7 @@ type Char struct {
 	Storage
 	Location
 	ObjectState
+	Inventory
 }
 
 type Item struct {
@@ -38,6 +39,11 @@ type Storage struct {
 	BackPack  map[string]Item
 	Pockets   map[string]int
 	LootTable map[string]Item
+}
+
+type Inventory struct {
+	WeaponSlot [3]*Item
+	PotionSlot [6]*Item
 }
 
 type ObjectState struct {

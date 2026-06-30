@@ -46,10 +46,10 @@ func (c *Char) PickupV2(NpcList map[string]Char) {
 	targetName := targets[0]
 	loot := make(map[string]Item)
 
-	loot["WoodenMallet"] = NpcList[targetName].Storage.LootTable["WoodenMallet"]
+	loot["testHammer"] = NpcList[targetName].Storage.LootTable["testHammer"]
 
 	if NpcList[targetName].Stats.Health <= 0 {
-		c.Storage.BackPack["WoodenMallet"] = loot["WoodenMallet"]
+		c.Storage.BackPack["testHammer"] = loot["testHammer"]
 	}
 }
 
@@ -58,6 +58,29 @@ func (c *Char) TestPickupItem(NpcList map[string]Char) {
 
 	c.Storage.BackPack["testHammer"] = itemList["testHammer"]
 	fmt.Println(c.Storage.BackPack["testHammer"])
+}
+func (c *Char) TestPickupItemV2(NpcList map[string]Char) {
+	ItemList := TestItem()
+
+	// weapons := ItemList[0]
+
+	// for _, weapon := range c.Inventory.WeaponSlot {
+	// 	if weapon != nil {
+	// 		ItemList = append(ItemList, *weapon)
+	// 	}
+	// }
+
+	if c.Inventory.WeaponSlot[0] != nil {
+		ItemList = append(ItemList, *c.Inventory.WeaponSlot[0])
+	}
+	// c.Inventory.WeaponSlot[0] = &weapons
+	// c.Inventory.WeaponSlot[1] = &weapons
+
+	c.Inventory.WeaponSlot[0] = &ItemList[0]
+	c.Inventory.WeaponSlot[1] = &ItemList[1]
+
+	fmt.Println("test", c.Inventory.WeaponSlot[0])
+	fmt.Println("test", c.Inventory.WeaponSlot[1])
 }
 
 func (c *Char) Defende(NpcList map[string]Char) {

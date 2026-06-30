@@ -91,6 +91,55 @@ func NPC() map[string]Char {
 	return NpcList
 }
 
+func TestItem() []Item {
+
+	Test := []Item{}
+
+	TestMace := Item{
+		Information: Information{
+			Name:        "TestMace",
+			Age:         100,
+			Description: "To be written",
+		},
+		Stats: Stats{
+			Health:       5,
+			Mana:         5,
+			Agility:      5,
+			Strength:     5,
+			Intelligence: 5,
+			BaseDmg:      5,
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+
+	TestSword := Item{
+		Information: Information{
+			Name:        "TestAxe",
+			Age:         100,
+			Description: "To be written",
+		},
+		Stats: Stats{
+			Health:       5,
+			Mana:         5,
+			Agility:      5,
+			Strength:     5,
+			Intelligence: 5,
+			BaseDmg:      5,
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+	Test = append(Test, TestMace)
+	Test = append(Test, TestSword)
+
+	return Test
+}
+
 func Items() map[string]Item {
 	ItemList := make(map[string]Item)
 
