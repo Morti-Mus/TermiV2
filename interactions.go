@@ -60,15 +60,7 @@ func (c *Char) TestPickupItem(NpcList map[string]Char) {
 	fmt.Println(c.Storage.BackPack["testHammer"])
 }
 func (c *Char) TestPickupItemV2(NpcList map[string]Char) {
-	ItemList := TestItem()
-
-	// weapons := ItemList[0]
-
-	// for _, weapon := range c.Inventory.WeaponSlot {
-	// 	if weapon != nil {
-	// 		ItemList = append(ItemList, *weapon)
-	// 	}
-	// }
+	ItemList := ItemArrays()
 
 	if c.Inventory.WeaponSlot[0] != nil {
 		ItemList = append(ItemList, *c.Inventory.WeaponSlot[0])
@@ -78,9 +70,14 @@ func (c *Char) TestPickupItemV2(NpcList map[string]Char) {
 
 	c.Inventory.WeaponSlot[0] = &ItemList[0]
 	c.Inventory.WeaponSlot[1] = &ItemList[1]
+	c.Inventory.WeaponSlot[2] = &ItemList[2]
 
 	fmt.Println("test", c.Inventory.WeaponSlot[0])
 	fmt.Println("test", c.Inventory.WeaponSlot[1])
+	fmt.Println("test", c.Inventory.WeaponSlot[2])
+}
+func (c *Char) AddItem(item *Item) {
+
 }
 
 func (c *Char) Defende(NpcList map[string]Char) {
@@ -251,11 +248,12 @@ func (c *Char) Move(deltaX, deltaY int) {
 func GameDialog() map[string]string {
 	a := make(map[string]string)
 
-	a["intro"] = "Hello welcome to the game you will soon get instructions on how it works \n"
-	a["movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south \n"
-	a["attack"] = "stuff"
-	a["scan"] = "you see a person in the distance \n"
-	a["combat"] = "These are the options you have in combat. \n (attack) to attack your enemy \n (inspect) to inspect you enemy \n (defende) to defende from your enemy \n (stop) to return to movment.\n"
+	a["Intro"] = "Hello welcome to the game you will soon get instructions on how it works \n"
+	a["IntroWeaponPick"] = "Pick upp your weapon of choice \n (1) for starter Sword \n (2) for starter Axe \n (3) for starter Mace"
+	a["Movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south \n"
+	a["Attack"] = "stuff"
+	a["Scan"] = "you see a person in the distance \n"
+	a["Combat"] = "These are the options you have in combat. \n (attack) to attack your enemy \n (inspect) to inspect you enemy \n (defende) to defende from your enemy \n (stop) to return to movment.\n"
 
 	return a
 }

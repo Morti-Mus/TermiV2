@@ -22,9 +22,9 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 
 	a := GameDialog()
 
-	fmt.Printf(a["intro"])
+	fmt.Printf(a["Intro"])
 
-	fmt.Printf(a["movment"])
+	fmt.Printf(a["Movment"])
 	fmt.Printf("Your Input: ")
 	// p := &mainChar // p is the pointer for mainChars address in memory.
 
@@ -54,6 +54,9 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 		case "test":
 			p.TestPickupItemV2(NpcList)
 
+		case "invetory":
+			p.InventoryLoop()
+
 		case "fight":
 			fmt.Println("you have enterd fight mode")
 			CombatLoop(p, NpcList)
@@ -66,11 +69,25 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 	}
 }
 
+func (c *Char) InventoryLoop() {
+
+	for {
+		inp := Tester()
+
+		switch inp {
+
+		case "test":
+			fmt.Println("test")
+		}
+
+	}
+}
+
 func CombatLoop(c *Char, NpcList map[string]Char) {
 	a := GameDialog()
 	c.Stats.Defence = c.Stats.BaseDefence
 	// fmt.Println(c.Stats.Defence)
-	fmt.Printf(a["combat"])
+	fmt.Printf(a["Combat"])
 
 	for {
 		inp := Tester()

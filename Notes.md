@@ -4,7 +4,7 @@
 Idee 
 1. move loop and combat loop be able to jump from one loop to the other
 2. add a pick a lock minigame ? 
-3. 
+3. add movemnt of items inside of an array
 
 
 
