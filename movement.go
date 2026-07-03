@@ -52,7 +52,7 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 			p.ScanV2(NpcList)
 
 		case "test":
-			p.TestPickupItemV2(NpcList)
+			p.TestPickupItemV2(0)
 
 		case "invetory":
 			p.InventoryLoop()
@@ -75,6 +75,9 @@ func (c *Char) InventoryLoop() {
 		inp := Tester()
 
 		switch inp {
+
+		case "1": // add user fmtprint to explain weapon choice
+			c.TestPickupItemV2(0)
 
 		case "test":
 			fmt.Println("test")

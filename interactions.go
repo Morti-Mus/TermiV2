@@ -59,18 +59,20 @@ func (c *Char) TestPickupItem(NpcList map[string]Char) {
 	c.Storage.BackPack["testHammer"] = itemList["testHammer"]
 	fmt.Println(c.Storage.BackPack["testHammer"])
 }
-func (c *Char) TestPickupItemV2(NpcList map[string]Char) {
+func (c *Char) TestPickupItemV2(index int) {
 	ItemList := ItemArrays()
 
-	if c.Inventory.WeaponSlot[0] != nil {
-		ItemList = append(ItemList, *c.Inventory.WeaponSlot[0])
-	}
+	// fmt.Print(ItemList[0])
+
+	// if c.Inventory.WeaponSlot[0] != nil {
+	// 	ItemList = append(ItemList, *c.Inventory.WeaponSlot[0])
+	// }
 	// c.Inventory.WeaponSlot[0] = &weapons
 	// c.Inventory.WeaponSlot[1] = &weapons
 
-	c.Inventory.WeaponSlot[0] = &ItemList[0]
-	c.Inventory.WeaponSlot[1] = &ItemList[1]
-	c.Inventory.WeaponSlot[2] = &ItemList[2]
+	c.Inventory.WeaponSlot[index] = &ItemList[index]
+	// c.Inventory.WeaponSlot[index] = &ItemList[index]
+	// c.Inventory.WeaponSlot[2] = &ItemList[index]
 
 	fmt.Println("test", c.Inventory.WeaponSlot[0])
 	fmt.Println("test", c.Inventory.WeaponSlot[1])
