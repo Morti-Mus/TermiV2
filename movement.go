@@ -54,7 +54,7 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 		case "test":
 			p.TestPickupItemV2(0)
 
-		case "invetory":
+		case "inventory":
 			p.InventoryLoop()
 
 		case "fight":
@@ -70,17 +70,29 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 }
 
 func (c *Char) InventoryLoop() {
+	a := GameDialog()
 
+	fmt.Printf(a["IntroWeaponPick"])
 	for {
 		inp := Tester()
 
+		fmt.Println()
 		switch inp {
 
 		case "1": // add user fmtprint to explain weapon choice
 			c.TestPickupItemV2(0)
 
+		case "2":
+			c.TestPickupItemV2(1)
+
+		case "3":
+			c.TestPickupItemV2(2)
+
 		case "test":
 			fmt.Println("test")
+
+		case "stop":
+			return
 		}
 
 	}

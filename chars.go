@@ -161,6 +161,10 @@ func ItemArrays() []Item {
 	return ItemArray
 }
 
+// func Items() map[string]Item {
+// 	return map[string]Item{}
+// }
+
 func Items() map[string]Item {
 	ItemList := make(map[string]Item)
 
@@ -221,6 +225,15 @@ func Items() map[string]Item {
 			YAxis: 0,
 		},
 	}
+
+	// testBoow := Item{
+	// 	InformaInformation: Information{
+	// 		Name:
+	// 		Age:
+	// 		Description:
+	// 	},
+
+	// }
 
 	ItemList["TestSword"] = TestSword
 	ItemList["WoodenMallet"] = woodenMallet

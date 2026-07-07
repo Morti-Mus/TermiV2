@@ -7,6 +7,21 @@ Idee
 3. add movemnt of items inside of an array
 
 
+Sams idee list
+1. skapa ny folder för models 
+2. koppla ihop folders till main
+3. Skapa methods för npc list och itemlist som vi har i chars för dags läget.
+4. Split upp chars.go i chars vill du bara deklarera struc ts utan att ge dem values.
+5. Lägg till folders och lär dig koppla.
+6. kolla på hur det fungerar med config files där populerar du tex data till dina structs.
+7. kolla upp hur methods funkar helt 
+
+
+
+
+Framtid OBS skapa koppling till mongoDB för ITEMS med gin 
+
+
 
 
 
@@ -43,6 +58,10 @@ this is a bitt of a important concept i think
 3. I need to understand what and why im using it. For example in this code i have focused on maps beacuse i found the key and assignmet functionality neat for my structs. But damn its screwd me over when i need to sort or auto pick things from the maps wich you cant. Beacuse you set your own structure.
 
 ^
+
+matcha index mellan 2 olika listor 
+
+function collapse probability
 
 
 im running in to a problem where i want to target the map of items that is called inventory without using the key. 

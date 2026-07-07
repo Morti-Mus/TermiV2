@@ -21,7 +21,7 @@ func (c Char) Scan(NpcList map[string]Char) {
 func (c Char) ScanV2(NpcList map[string]Char) {
 	targets := FindCharsAtLocation(NpcList, c.Location)
 
-	// targetName := targets
+	targetName := targets
 	fmt.Println(targets)
 
 }
@@ -251,7 +251,7 @@ func GameDialog() map[string]string {
 	a := make(map[string]string)
 
 	a["Intro"] = "Hello welcome to the game you will soon get instructions on how it works \n"
-	a["IntroWeaponPick"] = "Pick upp your weapon of choice \n (1) for starter Sword \n (2) for starter Axe \n (3) for starter Mace"
+	a["IntroWeaponPick"] = "Pick upp your weapon of choice \n (1) for starter Sword \n (2) for starter Axe \n (3) for starter Mace\n"
 	a["Movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south \n"
 	a["Attack"] = "stuff"
 	a["Scan"] = "you see a person in the distance \n"
