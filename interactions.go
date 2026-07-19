@@ -74,6 +74,27 @@ func (c *Char) AddItem(item *Item) {
 
 }
 
+func (c *Char) DisplayInventory() {
+
+	testTwo := c.Inventory
+
+	for i := 0; i < len(testTwo.PotionSlot); i++ {
+		if testTwo.PotionSlot[i] != nil {
+			fmt.Println(testTwo.PotionSlot[i].Name)
+			// continue
+		}
+		// fmt.Println(testTwo[i].Name)
+	}
+
+	for i := 0; i < len(testTwo.WeaponSlot); i++ {
+		if testTwo.WeaponSlot[i] != nil {
+			fmt.Println(testTwo.WeaponSlot[i].Name)
+			// continue
+		}
+		// fmt.Println(testTwo[i].Name)
+	}
+}
+
 func (c *Char) Defende(NpcList map[string]Char) {
 
 	// c.Stats.BaseDefence = c.Stats.Strength + c.Stats.BaseDefence

@@ -85,6 +85,9 @@ func (c *Char) InventoryLoop() {
 		case "3":
 			c.TestPickupItemV2(2)
 
+		case "inv":
+			c.DisplayInventory()
+
 		case "test":
 			fmt.Println("test")
 
