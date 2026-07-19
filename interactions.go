@@ -10,20 +10,12 @@ func (c Char) Scan(NpcList map[string]Char) {
 
 	for i, Npc := range NpcList {
 
-		fmt.Printf("Npclist[%v] x=%v y=%v \n",
+		fmt.Printf("%v x%v/y%v \n",
 			i,
 			Npc.Location.XAxis,
 			Npc.Location.YAxis,
 		)
 	}
-}
-
-func (c Char) ScanV2(NpcList map[string]Char) {
-	targets := FindCharsAtLocation(NpcList, c.Location)
-
-	targetName := targets
-	fmt.Println(targets)
-
 }
 
 func (c *Char) EquipeItem(NpcList map[string]Char) { // https://leapcell.io/blog/checking-if-a-key-exists-in-a-go-map

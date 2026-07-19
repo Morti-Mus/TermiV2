@@ -48,9 +48,6 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 		case "scan":
 			p.Scan(NpcList)
 
-		case "scan2":
-			p.ScanV2(NpcList)
-
 		case "test":
 			p.TestPickupItemV2(0)
 
