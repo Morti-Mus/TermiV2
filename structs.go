@@ -13,7 +13,17 @@ type Item struct {
 	Information
 	Stats
 	Location
+	Kind ItemKind
 }
+
+type ItemKind int
+
+const (
+	ItemKindUnknown ItemKind = iota
+	ItemKindWeapon
+	ItemKindPotion
+)
+
 type Information struct {
 	Name        string
 	Age         int

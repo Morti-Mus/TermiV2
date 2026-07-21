@@ -85,6 +85,9 @@ func (c *Char) InventoryLoop() {
 		case "3":
 			c.TestPickupItemV2(2)
 
+		case "4":
+			c.TestPickupItemV2(0)
+
 		case "inv":
 			c.DisplayInventory()
 

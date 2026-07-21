@@ -96,6 +96,7 @@ func ItemArrays() []Item {
 	ItemArray := []Item{}
 
 	BegginerMace := Item{
+		Kind: ItemKindPotion,
 		Information: Information{
 			Name:        "TestMace",
 			Age:         100,
@@ -116,6 +117,7 @@ func ItemArrays() []Item {
 	}
 
 	BegginerAxe := Item{
+		Kind: ItemKindPotion,
 		Information: Information{
 			Name:        "TestAxe",
 			Age:         100,
@@ -135,6 +137,7 @@ func ItemArrays() []Item {
 		},
 	}
 	BegginerSword := Item{
+		Kind: ItemKindPotion,
 		Information: Information{
 			Name:        "TestAxe",
 			Age:         100,
@@ -154,9 +157,25 @@ func ItemArrays() []Item {
 		},
 	}
 
+	HealthPotion := Item{
+		Information: Information{
+			Name:        "Health Potion",
+			Age:         1,
+			Description: "Using this potion will replenish your health points",
+		},
+		Stats: Stats{
+			Health: 25,
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+
 	ItemArray = append(ItemArray, BegginerMace)
 	ItemArray = append(ItemArray, BegginerAxe)
 	ItemArray = append(ItemArray, BegginerSword)
+	ItemArray = append(ItemArray, HealthPotion)
 
 	return ItemArray
 }

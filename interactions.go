@@ -51,6 +51,16 @@ func (c *Char) TestPickupItem(NpcList map[string]Char) {
 	c.Storage.BackPack["testHammer"] = itemList["testHammer"]
 	fmt.Println(c.Storage.BackPack["testHammer"])
 }
+
+// func (c Char) PickUpP() {
+// 	ItemList := ItemArrays()
+
+//		fmt.Println(ItemList[])
+//	}
+func (c *Char) AddItem(Item *Item) error {
+
+}
+
 func (c *Char) TestPickupItemV2(index int) {
 	ItemList := ItemArrays()
 
@@ -63,12 +73,14 @@ func (c *Char) TestPickupItemV2(index int) {
 	// c.Inventory.WeaponSlot[1] = &weapons
 
 	c.Inventory.WeaponSlot[index] = &ItemList[index]
+	c.Inventory.PotionSlot[index] = &ItemList[index]
 	// c.Inventory.WeaponSlot[index] = &ItemList[index]
 	// c.Inventory.WeaponSlot[2] = &ItemList[index]
 
 	fmt.Println("test", c.Inventory.WeaponSlot[0])
 	fmt.Println("test", c.Inventory.WeaponSlot[1])
 	fmt.Println("test", c.Inventory.WeaponSlot[2])
+	fmt.Println("Potion", c.Inventory.PotionSlot[0])
 }
 func (c *Char) AddItem(item *Item) {
 
