@@ -100,7 +100,7 @@ func ItemArrays() []Item {
 		Information: Information{
 			Name:        "A basic iron sword \n This will get most jobs done",
 			Age:         100,
-			Description: "This iron sword has seen its prime \n even thos its starting to dull it will do the job",
+			Description: "This iron sword has seen its prime \n even thos its starting to dull it will do the job. \n",
 		},
 		Stats: Stats{
 			Health:       5,
@@ -121,7 +121,7 @@ func ItemArrays() []Item {
 		Information: Information{
 			Name:        "A woodsmans standard hatchet",
 			Age:         100,
-			Description: "This axe has been used prodigusally \n Many trees have been copped but stil holds its edge",
+			Description: "This axe has been used prodigusally \n Many trees have been copped but stil holds its edge.\n",
 		},
 		Stats: Stats{
 			Health:       5,
@@ -141,7 +141,7 @@ func ItemArrays() []Item {
 		Information: Information{
 			Name:        "A basic Iron Mace",
 			Age:         100,
-			Description: "A square Mace \n this could have once been a smithing hammer but made for a giant.",
+			Description: "A square Mace \n this could have once been a smithing hammer but made for a giant.\n",
 		},
 		Stats: Stats{
 			Health:       5,
@@ -162,7 +162,7 @@ func ItemArrays() []Item {
 		Information: Information{
 			Name:        "Health Potion",
 			Age:         1,
-			Description: "Using this potion will replenish your health points",
+			Description: "Using this potion will replenish your health points.\n",
 		},
 		Stats: Stats{
 			Health: 25,
@@ -178,7 +178,7 @@ func ItemArrays() []Item {
 		Information: Information{
 			Name:        "Mana Potion",
 			Age:         1,
-			Description: "Using this potion will replenish your mana points",
+			Description: "Using this potion will replenish your mana points.\n",
 		},
 		Stats: Stats{
 			Mana: 25,
@@ -189,9 +189,9 @@ func ItemArrays() []Item {
 		},
 	}
 
-	ItemArray = append(ItemArray, BegginerMace)
-	ItemArray = append(ItemArray, BegginerAxe)
 	ItemArray = append(ItemArray, BegginerSword)
+	ItemArray = append(ItemArray, BegginerAxe)
+	ItemArray = append(ItemArray, BegginerMace)
 	ItemArray = append(ItemArray, HealthPotion)
 	ItemArray = append(ItemArray, ManaPotion)
 

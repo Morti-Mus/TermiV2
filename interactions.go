@@ -57,7 +57,18 @@ func (c *Char) TestPickupItem(NpcList map[string]Char) {
 
 //		fmt.Println(ItemList[])
 //	}
+func (c *Char) EquipeItemV2(index int) {
+	for i := range c.Inventory.WeaponSlot {
+		if c.Inventory.WeaponSlot[i] != nil {
+			fmt.Println(i, c.Inventory.WeaponSlot[i].Name)
+		}
+	}
 
+	Weapon := c.Inventory.WeaponSlot[index]
+
+	c.BaseDmg += Weapon.BaseDmg
+	// fmt.Println(Weapon.Name)
+}
 func (c *Char) UsePotion(index int) {
 	for i := range c.Inventory.PotionSlot {
 		if c.Inventory.PotionSlot[i] != nil {

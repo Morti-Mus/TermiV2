@@ -91,6 +91,8 @@ func (c *Char) InventoryLoop() {
 
 		case "5":
 			c.TestPickupItemV3(4)
+		case "6": //Create subb menu for potion usage and item equipment will get complicated
+			c.EquipeItemV2(0)
 
 		case "inv":
 			c.DisplayInventory()
