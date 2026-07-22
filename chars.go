@@ -95,12 +95,12 @@ func ItemArrays() []Item {
 
 	ItemArray := []Item{}
 
-	BegginerMace := Item{
+	BegginerSword := Item{
 		Kind: ItemKindWeapon,
 		Information: Information{
-			Name:        "TestMace",
+			Name:        "A basic iron sword \n This will get most jobs done",
 			Age:         100,
-			Description: "To be written",
+			Description: "This iron sword has seen its prime \n even thos its starting to dull it will do the job",
 		},
 		Stats: Stats{
 			Health:       5,
@@ -119,9 +119,9 @@ func ItemArrays() []Item {
 	BegginerAxe := Item{
 		Kind: ItemKindWeapon,
 		Information: Information{
-			Name:        "TestAxe",
+			Name:        "A woodsmans standard hatchet",
 			Age:         100,
-			Description: "To be written",
+			Description: "This axe has been used prodigusally \n Many trees have been copped but stil holds its edge",
 		},
 		Stats: Stats{
 			Health:       5,
@@ -136,12 +136,12 @@ func ItemArrays() []Item {
 			YAxis: 0,
 		},
 	}
-	BegginerSword := Item{
+	BegginerMace := Item{
 		Kind: ItemKindWeapon,
 		Information: Information{
-			Name:        "TestAxe",
+			Name:        "A basic Iron Mace",
 			Age:         100,
-			Description: "To be written",
+			Description: "A square Mace \n this could have once been a smithing hammer but made for a giant.",
 		},
 		Stats: Stats{
 			Health:       5,
@@ -173,10 +173,27 @@ func ItemArrays() []Item {
 		},
 	}
 
+	ManaPotion := Item{
+		Kind: ItemKindPotion,
+		Information: Information{
+			Name:        "Mana Potion",
+			Age:         1,
+			Description: "Using this potion will replenish your mana points",
+		},
+		Stats: Stats{
+			Mana: 25,
+		},
+		Location: Location{
+			XAxis: 0,
+			YAxis: 0,
+		},
+	}
+
 	ItemArray = append(ItemArray, BegginerMace)
 	ItemArray = append(ItemArray, BegginerAxe)
 	ItemArray = append(ItemArray, BegginerSword)
 	ItemArray = append(ItemArray, HealthPotion)
+	ItemArray = append(ItemArray, ManaPotion)
 
 	return ItemArray
 }

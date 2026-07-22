@@ -64,7 +64,7 @@ func (c *Char) UsePotion(index int) {
 			fmt.Println(i, c.Inventory.PotionSlot[i].Name)
 		}
 	}
-
+	// need to add max health cap
 	Potion := c.Inventory.PotionSlot[index]
 
 	c.Health += Potion.Health
