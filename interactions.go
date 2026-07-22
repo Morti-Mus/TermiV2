@@ -57,7 +57,21 @@ func (c *Char) TestPickupItem(NpcList map[string]Char) {
 
 //		fmt.Println(ItemList[])
 //	}
-func (c *Char) AddItem(Item *Item) error {
+
+func (c *Char) UsePotion(index int) {
+	for i := range c.Inventory.PotionSlot {
+		if c.Inventory.PotionSlot[i] != nil {
+			fmt.Println(i, c.Inventory.PotionSlot[i].Name)
+		}
+	}
+
+	Potion := c.Inventory.PotionSlot[index]
+
+	c.Health += Potion.Health
+	c.Mana += Potion.Mana
+	c.Agility += Potion.Agility
+	c.Strength += Potion.Strength
+	c.Intelligence += Potion.Intelligence
 
 }
 
@@ -82,8 +96,60 @@ func (c *Char) TestPickupItemV2(index int) {
 	fmt.Println("test", c.Inventory.WeaponSlot[2])
 	fmt.Println("Potion", c.Inventory.PotionSlot[0])
 }
-func (c *Char) AddItem(item *Item) {
+func (c *Char) TestPickupItemV3(itemIndex int) {
+	itemList := ItemArrays()
 
+	if itemIndex < 0 || itemIndex >= len(itemList) {
+		fmt.Println("Invalid item index")
+		return
+	}
+
+	item := &itemList[itemIndex]
+
+	err := c.AddItem(item)
+	if err != nil {
+		fmt.Println("Could not pick up item:", err)
+	}
+}
+func (c *Char) AddItem(item *Item) error {
+	switch item.Kind {
+	case ItemKindWeapon:
+		for i := range c.Inventory.WeaponSlot {
+			if c.Inventory.WeaponSlot[i] == nil {
+				c.Inventory.WeaponSlot[i] = item
+
+				fmt.Printf(
+					"%s was added to weapon slot %d\n",
+					item.Name,
+					i,
+				)
+
+				return nil
+			}
+		}
+
+		return fmt.Errorf("all weapon slots are full")
+
+	case ItemKindPotion:
+		for i := range c.Inventory.PotionSlot {
+			if c.Inventory.PotionSlot[i] == nil {
+				c.Inventory.PotionSlot[i] = item
+
+				fmt.Printf(
+					"%s was added to potion slot %d\n",
+					item.Name,
+					i,
+				)
+
+				return nil
+			}
+		}
+
+		return fmt.Errorf("all potion slots are full")
+
+	default:
+		return fmt.Errorf("item %q has no valid item kind", item.Name)
+	}
 }
 
 func (c *Char) DisplayInventory() {
@@ -277,6 +343,7 @@ func GameDialog() map[string]string {
 
 	a["Intro"] = "Hello welcome to the game you will soon get instructions on how it works \n"
 	a["IntroWeaponPick"] = "Pick upp your weapon of choice \n (1) for starter Sword \n (2) for starter Axe \n (3) for starter Mace\n"
+	a["IntroPotionsPick"] = "Pick upp your potion of choice \n (4) for Health potion \n (5) for Mana potion \n"
 	a["Movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south \n"
 	a["Attack"] = "stuff"
 	a["Scan"] = "you see a person in the distance \n"

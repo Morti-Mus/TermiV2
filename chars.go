@@ -96,7 +96,7 @@ func ItemArrays() []Item {
 	ItemArray := []Item{}
 
 	BegginerMace := Item{
-		Kind: ItemKindPotion,
+		Kind: ItemKindWeapon,
 		Information: Information{
 			Name:        "TestMace",
 			Age:         100,
@@ -117,7 +117,7 @@ func ItemArrays() []Item {
 	}
 
 	BegginerAxe := Item{
-		Kind: ItemKindPotion,
+		Kind: ItemKindWeapon,
 		Information: Information{
 			Name:        "TestAxe",
 			Age:         100,
@@ -137,7 +137,7 @@ func ItemArrays() []Item {
 		},
 	}
 	BegginerSword := Item{
-		Kind: ItemKindPotion,
+		Kind: ItemKindWeapon,
 		Information: Information{
 			Name:        "TestAxe",
 			Age:         100,
@@ -158,6 +158,7 @@ func ItemArrays() []Item {
 	}
 
 	HealthPotion := Item{
+		Kind: ItemKindPotion,
 		Information: Information{
 			Name:        "Health Potion",
 			Age:         1,

@@ -70,6 +70,7 @@ func (c *Char) InventoryLoop() {
 	a := GameDialog()
 
 	fmt.Printf(a["IntroWeaponPick"])
+	fmt.Printf(a["IntroPotionsPick"])
 	for {
 		inp := Tester()
 
@@ -77,20 +78,27 @@ func (c *Char) InventoryLoop() {
 		switch inp {
 
 		case "1": // add user fmtprint to explain weapon choice
-			c.TestPickupItemV2(0)
+			c.TestPickupItemV3(0)
 
 		case "2":
-			c.TestPickupItemV2(1)
+			c.TestPickupItemV3(1)
 
 		case "3":
-			c.TestPickupItemV2(2)
+			c.TestPickupItemV3(2)
 
 		case "4":
-			c.TestPickupItemV2(0)
+			c.TestPickupItemV3(3)
+
+		case "5":
+			c.TestPickupItemV3(4)
 
 		case "inv":
 			c.DisplayInventory()
 
+		case "try":
+			fmt.Println(c.Stats.Health)
+			c.UsePotion(0)
+			fmt.Println(c.Stats.Health)
 		case "test":
 			fmt.Println("test")
 
