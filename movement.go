@@ -57,6 +57,9 @@ func MoveLoop(p *Char, NpcList map[string]Char) {
 		case "fight":
 			fmt.Println("you have enterd fight mode")
 			CombatLoop(p, NpcList)
+
+		case "options":
+			fmt.Printf(a["Options"])
 		}
 
 		fmt.Println("\n")

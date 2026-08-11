@@ -352,13 +352,13 @@ func (c *Char) Move(deltaX, deltaY int) {
 func GameDialog() map[string]string {
 	a := make(map[string]string)
 
-	a["Intro"] = "Hello welcome to the game you will soon get instructions on how it works \n"
+	a["Intro"] = "Hello welcome to the game you will soon get instructions on how it works \n Start with going into inventory and picking upp a starter weapon and a potion\n"
 	a["IntroWeaponPick"] = "Pick upp your weapon of choice \n (1) for starter Sword \n (2) for starter Axe \n (3) for starter Mace\n"
 	a["IntroPotionsPick"] = "Pick upp your potion of choice \n (4) for Health potion \n (5) for Mana potion \n"
-	a["Movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south \n"
+	a["Movment"] = "You will be able to move in the cardinal directions. \n (w) for north \n (a) for east \n (d) for west \n (s) for south \n For more options type (options)\n"
 	a["Attack"] = "stuff"
 	a["Scan"] = "you see a person in the distance \n"
 	a["Combat"] = "These are the options you have in combat. \n (attack) to attack your enemy \n (inspect) to inspect you enemy \n (defende) to defende from your enemy \n (stop) to return to movment.\n"
-
+	a["Options"] = "(inventory) \n (fight)\n (scan)\n"
 	return a
 }
